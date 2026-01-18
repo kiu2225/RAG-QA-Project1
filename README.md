@@ -5,8 +5,8 @@ A Retrieval Augmented Generation (RAG) based Question Answering system built as 
 ## Features
 
 - **Document Processing**: Load and chunk text documents for efficient retrieval
-- **Vector Embeddings**: Convert text to semantic embeddings using sentence transformers
-- **Vector Search**: Fast similarity search using FAISS
+- **Vector Embeddings**: Convert text to semantic embeddings using TF-IDF (or optional sentence transformers)
+- **Vector Search**: Fast similarity search using cosine similarity
 - **RAG Pipeline**: Retrieve relevant context and generate answers
 - **Interactive Mode**: Chat-like interface for asking questions
 - **Single Query Mode**: Process individual queries from command line
@@ -17,9 +17,11 @@ A Retrieval Augmented Generation (RAG) based Question Answering system built as 
 The system consists of four main components:
 
 1. **Document Processor** (`src/document_processor.py`): Loads and chunks documents
-2. **Vector Store** (`src/vector_store.py`): Creates embeddings and manages FAISS index
+2. **Vector Store** (`src/vector_store.py`): Creates embeddings and manages similarity search
 3. **RAG Pipeline** (`src/rag_pipeline.py`): Orchestrates retrieval and generation
 4. **Main Application** (`main.py`): CLI interface for the system
+
+By default, the system uses TF-IDF vectorization which doesn't require downloading models. For better semantic understanding, you can use sentence transformers (requires internet to download models).
 
 ## Installation
 
@@ -152,7 +154,12 @@ doc_processor = DocumentProcessor(chunk_size=500, chunk_overlap=50)
 
 ### Embedding Model
 
-Modify in `main.py`:
+By default, the system uses TF-IDF:
+```python
+vector_store = VectorStore(embedding_model_name='tfidf')
+```
+
+For better semantic understanding with neural embeddings (requires internet):
 ```python
 vector_store = VectorStore(embedding_model_name='all-MiniLM-L6-v2')
 ```
@@ -160,6 +167,8 @@ vector_store = VectorStore(embedding_model_name='all-MiniLM-L6-v2')
 Other good models:
 - `all-mpnet-base-v2` (better quality, slower)
 - `all-MiniLM-L12-v2` (medium quality and speed)
+
+Note: Neural embedding models require `sentence-transformers` and internet access to download.
 
 ### Number of Retrieved Contexts
 
@@ -178,12 +187,13 @@ python main.py --rebuild-index
 
 ## Dependencies
 
-- `sentence-transformers`: For creating text embeddings
-- `faiss-cpu`: For efficient vector similarity search
+- `scikit-learn`: For TF-IDF vectorization and cosine similarity
 - `numpy`: For numerical operations
 - `openai`: (Optional) For GPT-based answer generation
 - `python-dotenv`: For environment variable management
 - `PyPDF2`: For future PDF support
+- `sentence-transformers`: (Optional) For neural embeddings - requires internet to download models
+- `faiss-cpu`: (Optional) For FAISS-based vector search with neural embeddings
 
 ## Future Enhancements
 

@@ -28,7 +28,9 @@ def setup_rag_system(documents_dir: str, vector_store_dir: str = 'vector_store',
     """
     # Initialize components
     doc_processor = DocumentProcessor(chunk_size=500, chunk_overlap=50)
-    vector_store = VectorStore(embedding_model_name='all-MiniLM-L6-v2')
+    # Use 'tfidf' for simple embeddings that don't require internet
+    # Or use 'all-MiniLM-L6-v2' for neural embeddings if you have internet access
+    vector_store = VectorStore(embedding_model_name='tfidf')
     
     # Check if we should load existing index
     if not rebuild_index and os.path.exists(vector_store_dir):
