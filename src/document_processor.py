@@ -16,6 +16,9 @@ class DocumentProcessor:
             chunk_size: Maximum size of each text chunk in characters
             chunk_overlap: Number of characters to overlap between chunks
         """
+        if chunk_overlap >= chunk_size:
+            raise ValueError(f"chunk_overlap ({chunk_overlap}) must be less than chunk_size ({chunk_size})")
+        
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
     

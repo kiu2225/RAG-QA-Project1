@@ -133,11 +133,11 @@ RAG-QA-Project1/
 ## How It Works
 
 1. **Document Processing**: Text documents are loaded from the `documents/` directory and split into overlapping chunks
-2. **Embedding Generation**: Each chunk is converted to a vector embedding using a sentence transformer model
-3. **Index Building**: Embeddings are stored in a FAISS index for fast similarity search
+2. **Embedding Generation**: Each chunk is converted to a vector embedding using TF-IDF vectorization (or optionally sentence transformers)
+3. **Index Building**: Embeddings are stored in memory as numpy arrays for cosine similarity search
 4. **Query Processing**: When you ask a question:
-   - The question is converted to an embedding
-   - The most similar document chunks are retrieved
+   - The question is converted to an embedding using the same method
+   - The most similar document chunks are retrieved using cosine similarity
    - The chunks are used as context to generate an answer
 5. **Answer Generation**: 
    - With OpenAI: GPT model generates a natural language answer
