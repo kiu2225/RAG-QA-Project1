@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vector store data
+vector_store/
+*.index
+
+# Documents
+documents/*.pdf
+!documents/sample.txt
+
+# OS
+.DS_Store
+Thumbs.db

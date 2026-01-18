@@ -1,0 +1,29 @@
+Vector Databases and Embeddings
+
+Vector databases are specialized databases designed to store and query high-dimensional vectors efficiently. These vectors are mathematical representations of data (text, images, audio) in a continuous vector space, where similar items are located closer together.
+
+Embeddings are dense vector representations of data that capture semantic meaning. For text, embeddings convert words, sentences, or documents into numerical vectors where semantically similar content has similar vector representations. For example, the words "king" and "queen" would have vectors that are close to each other in the embedding space.
+
+How Vector Databases Work:
+1. Data is converted into embeddings using machine learning models
+2. Embeddings are stored in the vector database with metadata
+3. Queries are converted to embeddings using the same model
+4. Similar vectors are found using distance metrics (cosine similarity, Euclidean distance)
+5. Results are ranked by similarity score
+
+Popular Vector Databases:
+- FAISS: Facebook AI Similarity Search, highly efficient for large-scale similarity search
+- Pinecone: Managed vector database service
+- Weaviate: Open-source vector search engine
+- Milvus: Open-source vector database built for AI applications
+- Chroma: Embedding database for LLM applications
+- Qdrant: Vector similarity search engine
+
+Applications of Vector Databases:
+- Semantic search: Finding documents based on meaning rather than keywords
+- Recommendation systems: Finding similar products or content
+- Image search: Finding visually similar images
+- Question answering: Retrieving relevant context for answering questions
+- Anomaly detection: Identifying unusual patterns in data
+
+Vector databases are essential components in Retrieval Augmented Generation (RAG) systems, where they store document embeddings and enable efficient retrieval of relevant context for language models to generate accurate answers.
